@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_location_search_app/data/model/location.dart';
 
-Container item() {
+// HTML 태그 제거 '<b></b>'
+String removeHtmlTags(String htmlText) {
+  return htmlText.replaceAll(RegExp(r'<[^>]*>'), '');
+}
+
+Widget item(Location location) {
   return Container(
     padding: EdgeInsets.all(20),
     height: 140,
@@ -14,16 +20,16 @@ Container item() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '삼성 1동 주민센터',
+          removeHtmlTags(location.title),
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 8),
         Text(
-          '공공,사회기관',
+          location.category,
           style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
         ),
         SizedBox(height: 4),
-        Text('서울턱별시 강남구', style: TextStyle(fontSize: 16)),
+        Text(location.roadAddress, maxLines: 1, style: TextStyle(fontSize: 16)),
       ],
     ),
   );
