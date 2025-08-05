@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_location_search_app/data/model/location.dart';
 import 'package:flutter_location_search_app/ui/review/review_page.dart';
-
-// HTML 태그 제거 '<b></b>'
-String removeHtmlTags(String htmlText) {
-  return htmlText.replaceAll(RegExp(r'<[^>]*>'), '');
-}
+import 'package:flutter_location_search_app/ui/widget.dart';
 
 Widget item(Location location) {
   return Builder(
@@ -16,7 +12,11 @@ Widget item(Location location) {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return ReviewPage(placeName: location.title);
+                return ReviewPage(
+                  placeName: location.title,
+                  mapX: location.mapX,
+                  mapY: location.mapY,
+                );
               },
             ),
           );
